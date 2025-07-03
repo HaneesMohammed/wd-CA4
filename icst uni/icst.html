@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICST - International Campus of Science and Technology</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Modern CSS Reset */
+    :root {
+      --primary: #0053a0;
+      --primary-dark: #003d7a;
+      --secondary: #ffd700;
+      --accent: #e63946;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --light-blue: #e7f1ff;
+      --transition: all 0.3s ease;
+    }
+    
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background-color: var(--light);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+    
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 83, 160, 0.3);
+    }
+    
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--primary);
+    }
+    
+    .btn-secondary:hover {
+      background: #e6c300;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+    
+    .section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo-img {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+      border: 2px solid var(--secondary);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
+    }
+    
+    .logo-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Navigation */
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+    
+    .nav-links li a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: var(--transition);
+    }
+    
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    
+    .nav-links li a:hover {
+      color: var(--secondary);
+    }
+    
+    .nav-links li a i {
+      font-size: 0.9rem;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      background: linear-gradient(rgba(0, 83, 160, 0.7), rgba(0, 61, 122, 0.7)), 
+                  url('images/WhatsApp Image 2025-07-03 at 22.40.22_cea074c7.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+      margin-top: 90px;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    /* About Section */
+    .about {
+      background-color: white;
+    }
+    
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .about-img {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-text {
+      flex: 1;
+    }
+    
+    .about-text h3 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .about-text p {
+      margin-bottom: 15px;
+    }
+    
+    /* Faculties Section */
+    .faculties {
+      background-color: var(--light-blue);
+    }
+    
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .faculty-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+    
+    .faculty-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .faculty-img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .faculty-content {
+      padding: 25px;
+    }
+    
+    .faculty-content h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .faculty-content p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    
+    .faculty-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+    
+    /* Programs Section */
+    .programs {
+      background: white;
+    }
+    
+    .program-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .tab-btn {
+      padding: 12px 25px;
+      background: none;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--gray);
+      border: 2px solid transparent;
+    }
+    
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .tab-btn:not(.active):hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .program-content {
+      display: none;
+    }
+    
+    .program-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .program-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .program-item {
+      background: var(--light);
+      padding: 25px;
+      border-radius: 8px;
+      border-left: 4px solid var(--secondary);
+      transition: var(--transition);
+    }
+    
+    .program-item:hover {
+      background: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .program-item h4 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .program-item p {
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+    
+    .program-duration {
+      display: inline-block;
+      background: rgba(0, 83, 160, 0.1);
+      color: var(--primary);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(rgba(0, 83, 160, 0.9), rgba(0, 83, 160, 0.9)), 
+                  url('images/WhatsApp Image 2025-07-03 at 22.40.22_d7a581ed.jpg') no-repeat center center/cover;
+      color: white;
+    }
+    
+    .testimonials .section-title h2 {
+      color: white;
+    }
+    
+    .testimonial-slider {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .testimonial {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      display: none;
+    }
+    
+    .testimonial.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .testimonial-text {
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .testimonial-text::before,
+    .testimonial-text::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--secondary);
+      opacity: 0.3;
+      position: absolute;
+    }
+    
+    .testimonial-text::before {
+      top: -20px;
+      left: -15px;
+    }
+    
+    .testimonial-text::after {
+      bottom: -40px;
+      right: -15px;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .author-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--secondary);
+    }
+    
+    .author-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+    
+    .author-info p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    .slider-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .slider-dot.active {
+      background: var(--secondary);
+      transform: scale(1.2);
+    }
+    
+    /* CTA Section */
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-align: center;
+      padding: 100px 0;
+    }
+    
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 80px 0 30px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-col h3 {
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--secondary);
+    }
+    
+    .footer-col p {
+      margin-bottom: 15px;
+      opacity: 0.8;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      opacity: 0.8;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--secondary);
+      transform: translateX(5px);
+    }
+    
+    .footer-links a i {
+      font-size: 0.8rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--secondary);
+      color: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-bottom p {
+      opacity: 0.6;
+      font-size: 0.9rem;
+    }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal {
+      background: white;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      padding: 40px;
+      position: relative;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray);
+      transition: var(--transition);
+    }
+    
+    .close-modal:hover {
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+    
+    .modal h3 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 83, 160, 0.1);
+    }
+    
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+    }
+    
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .about-content {
+        flex-direction: column;
+      }
+      
+      .about-img, .about-text {
+        flex: none;
+        width: 100%;
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section {
+        padding: 60px 0;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      
+      .hero-btns {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 90px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-dark);
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+        gap: 25px;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: var(--transition);
+      }
+      
+      .nav-links.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+      
+      .stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .modal {
+        padding: 30px 20px;
+      }
+    }
+    
+    /* Animation Classes */
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .slide-up {
+      animation: slideUp 0.8s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="images/WhatsApp_Image_2025-07-03_at_19.32.23_a0e8dab7-removebg-preview.png" alt="ICST Logo" class="logo-img">
+        <div class="logo-text">
+          <div class="logo-title">ICST</div>
+          <div class="logo-subtitle">International Campus of Science and Technology</div>
+        </div>
+      </a>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="#faculties"><i class="fas fa-graduation-cap"></i> Faculties</a></li>
+        <li><a href="#programs"><i class="fas fa-book"></i> Programs</a></li>
+        <li><a href="#admissions"><i class="fas fa-user-graduate"></i> Admissions</a></li>
+        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home" style="background: linear-gradient(rgba(0, 83, 160, 0.7), rgba(0, 61, 122, 0.7)), url('images/WhatsApp Image 2025-07-03 at 22.40.22_cea074c7.jpg') no-repeat center center/cover;">
+    <div class="hero-content">
+      <h1 class="fade-in">Shaping the Future Through Innovation</h1>
+      <p class="fade-in delay-1">Join Sri Lanka's premier institution for science and technology education, where we nurture tomorrow's leaders and innovators.</p>
+      <div class="hero-btns">
+        <a href="#admissions" class="btn btn-secondary slide-up delay-2">Apply Now</a>
+        <a href="#programs" class="btn btn-primary slide-up delay-3">Explore Programs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About ICST</h2>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-img slide-up">
+          <img src="images/WhatsApp Image 2025-07-03 at 22.40.23_93621fe4.jpg" alt="ICST Campus">
+        </div>
+        
+        <div class="about-text">
+          <h3 class="slide-up">A World of Opportunities Awaits You</h3>
+          <p class="slide-up delay-1">The International Campus of Science and Technology (ICST University) is a leading institution dedicated to academic excellence, innovation, and global collaboration. It offers a wide range of undergraduate and postgraduate programs in science, technology, and related fields. With a diverse faculty, modern facilities, and a strong emphasis on research and practical learning, ICST University prepares students to meet global challenges and succeed in a competitive world.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faculties Section -->
+  <section class="section faculties" id="faculties">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Faculties</h2>
+        <p>Explore our diverse academic departments</p>
+      </div>
+      
+      <div class="faculty-grid">
+        <div class="faculty-card fade-in">
+          <div class="faculty-content">
+            <h3>Faculty of Engineering and Technology</h3>
+          </div>
+        </div>
+        <div class="faculty-card fade-in delay-1">
+          <div class="faculty-content">
+            <h3>Faculty of Computing and Informatics</h3>
+          </div>
+        </div>
+        <div class="faculty-card fade-in delay-2">
+          <div class="faculty-content">
+            <h3>Faculty of Management Studies</h3>
+          </div>
+        </div>
+        <div class="faculty-card fade-in delay-3">
+          <div class="faculty-content">
+            <h3>Faculty of Tourism and Hospitality</h3>
+          </div>
+        </div>
+        <div class="faculty-card fade-in delay-4">
+          <div class="faculty-content">
+            <h3>Faculty of Health Sciences</h3>
+          </div>
+        </div>
+        <div class="faculty-card fade-in delay-5">
+          <div class="faculty-content">
+            <h3>Faculty of Education</h3>
+          </div>
+        </div>
+        <div class="faculty-card fade-in delay-6">
+          <div class="faculty-content">
+            <h3>Faculty of Architecture and Design</h3>
+          </div>
+        </div>
+        <div class="faculty-card fade-in delay-7">
+          <div class="faculty-content">
+            <h3>Faculty of Social Sciences</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="section programs" id="programs">
+    <div class="container">
+      <div class="section-title">
+        <h2>Academic Programs</h2>
+        <p>Choose your path to success</p>
+      </div>
+      <div class="program-tabs">
+        <button class="tab-btn active" data-tab="undergraduate">Undergraduate</button>
+        <button class="tab-btn" data-tab="postgraduate">Postgraduate</button>
+        <button class="tab-btn" data-tab="professional">Professional Short Courses</button>
+        <button class="tab-btn" data-tab="prepatory">Prepatory Studies</button>
+      </div>
+      
+      <div class="program-content active" id="undergraduate">
+        <div class="program-list">
+          <div class="program-item"><h4>DAIT</h4></div>
+          <div class="program-item"><h4>Diploma in Engineering</h4></div>
+          <div class="program-item"><h4>Diploma in Tourism and Hospitality Management</h4></div>
+          <div class="program-item"><h4>Diploma in Logistics and Supply Chain Management</h4></div>
+          <div class="program-item"><h4>Diploma in Health and Social Care Management</h4></div>
+        </div>
+      </div>
+      
+      <div class="program-content" id="postgraduate">
+        <div class="program-list">
+          <div class="program-item"><h4>PGD in Accounts and Finance and Finance</h4></div>
+          <div class="program-item"><h4>PGD in Human Resource Management</h4></div>
+          <div class="program-item"><h4>PGD in Logistics and Supply Management</h4></div>
+          <div class="program-item"><h4>PGD in Tourism and Management</h4></div>
+          <div class="program-item"><h4>PGD in Education Management and Leadership</h4></div>
+          <div class="program-item"><h4>PGD in Project Management</h4></div>
+        </div>
+      </div>
+      
+      <div class="program-content" id="professional">
+        <div class="program-list">
+          <!-- No programs currently available -->
+        </div>
+      </div>
+      <div class="program-content" id="prepatory">
+        <div class="program-list">
+          <!-- No programs currently available -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials" style="background: linear-gradient(rgba(0, 83, 160, 0.9), rgba(0, 83, 160, 0.9)), url('images/WhatsApp Image 2025-07-03 at 22.40.22_d7a581ed.jpg') no-repeat center center/cover; color: white;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Success Stories</h2>
+        <p>What Scholars and Achievers say</p>
+      </div>
+      
+      <div class="testimonial-slider">
+        <div class="testimonial active">
+          <div class="testimonial-text">
+            “Intelligence is the ability to adapt to change.”
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Stephen Hawking</h4>
+              <p>Theoretical Physicist, University of Cambridge</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial">
+          <div class="testimonial-text">
+            “Imagination is more important than knowledge.”
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Albert Einstein</h4>
+              <p>Theoretical Physicist, Nobel Laureate</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial">
+          <div class="testimonial-text">
+            “When something is important enough, you do it even if the odds are not in your favor.”
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Elon Musk</h4>
+              <p>CEO, SpaceX & Tesla, studied at Stanford (dropped out)</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="slider-controls">
+          <div class="slider-dot active" data-slide="0"></div>
+          <div class="slider-dot" data-slide="1"></div>
+          <div class="slider-dot" data-slide="2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Admissions CTA -->
+  <section class="section cta" id="admissions">
+    <div class="container">
+      <h2 class="fade-in">Ready to Start Your Journey?</h2>
+      <p class="fade-in delay-1">Applications for the 2025 intake are now open. Join our community of innovators and leaders.</p>
+      <div class="hero-btns fade-in delay-2">
+        <button class="btn btn-secondary open-modal" data-modal="apply">Apply Now</button>
+        <button class="btn btn-primary open-modal" data-modal="inquire">Request Information</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <h3>About ICST</h3>
+          <p>The International Campus of Science and Technology is committed to providing world-class education in science, technology, engineering, and management disciplines.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="#faculties"><i class="fas fa-chevron-right"></i> Faculties</a></li>
+            <li><a href="#programs"><i class="fas fa-chevron-right"></i> Programs</a></li>
+            <li><a href="#admissions"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> ICST Campus, University Park, Colombo, Sri Lanka</p>
+          <p><i class="fas fa-phone"></i> +94 74 3444 444</p>
+          <p><i class="fas fa-envelope"></i> admissions@icst.edu.lk</p>
+          <p><i class="fas fa-clock"></i> Mon-Fri: 8:30 AM - 4:30 PM</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 International Campus of Science and Technology. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Modal -->
+  <div class="modal-overlay" id="applyModal">
+    <div class="modal">
+      <button class="close-modal">&times;</button>
+      <h3>Application Form</h3>
+      <form id="applicationForm">
+        <div class="form-group">
+          <label for="appName">Full Name</label>
+          <input type="text" id="appName" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="appEmail">Email Address</label>
+          <input type="email" id="appEmail" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="appPhone">Phone Number</label>
+          <input type="tel" id="appPhone" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="appProgram">Program of Interest</label>
+          <select id="appProgram" class="form-control" required>
+            <option value="">Select Program</option>
+            <optgroup label="Undergraduate">
+              <option value="cs">BSc in Computer Science</option>
+              <option value="eng">BEng in Civil Engineering</option>
+              <option value="bba">BBA in Business Administration</option>
+            </optgroup>
+            <optgroup label="Postgraduate">
+              <option value="msc">MSc in Data Science</option>
+              <option value="mba">Master of Business Administration</option>
+            </optgroup>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="appMessage">Additional Information</label>
+          <textarea id="appMessage" class="form-control" rows="4"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary submit-btn">Submit Application</button>
+        
+        <div class="success-message" id="appSuccess">
+          <i class="fas fa-check-circle"></i> Thank you for your application! We'll contact you shortly.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Inquiry Modal -->
+  <div class="modal-overlay" id="inquireModal">
+    <div class="modal">
+      <button class="close-modal">&times;</button>
+      <h3>Request Information</h3>
+      <form id="inquiryForm">
+        <div class="form-group">
+          <label for="inqName">Full Name</label>
+          <input type="text" id="inqName" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="inqEmail">Email Address</label>
+          <input type="email" id="inqEmail" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="inqPhone">Phone Number</label>
+          <input type="tel" id="inqPhone" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="inqSubject">Subject</label>
+          <select id="inqSubject" class="form-control" required>
+            <option value="">Select Subject</option>
+            <option value="admissions">Admissions Inquiry</option>
+            <option value="programs">Program Information</option>
+            <option value="facilities">Campus Facilities</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="inqMessage">Your Message</label>
+          <textarea id="inqMessage" class="form-control" rows="4" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary submit-btn">Send Inquiry</button>
+        
+        <div class="success-message" id="inqSuccess">
+          <i class="fas fa-check-circle"></i> Thank you for your inquiry! We'll respond within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Program Tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const programContents = document.querySelectorAll('.program-content');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons and contents
+        tabBtns.forEach(b => b.classList.remove('active'));
+        programContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        // Show corresponding content
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+    
+    // Testimonial Slider
+    const testimonials = document.querySelectorAll('.testimonial');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentTestimonial = 0;
+    
+    function showTestimonial(index) {
+      testimonials.forEach(t => t.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      
+      testimonials[index].classList.add('active');
+      dots[index].classList.add('active');
+      currentTestimonial = index;
+    }
+    
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showTestimonial(index));
+    });
+    
+    // Auto-rotate testimonials
+    setInterval(() => {
+      let nextIndex = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(nextIndex);
+    }, 5000);
+    
+    // Modal Handling
+    const modals = {
+      apply: document.getElementById('applyModal'),
+      inquire: document.getElementById('inquireModal')
+    };
+    
+    const openModalBtns = document.querySelectorAll('.open-modal');
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    
+    openModalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.getAttribute('data-modal');
+        modals[modalId].classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    closeModalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.modal-overlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+    
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+    // Form Submissions
+    document.getElementById('applicationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would typically send the form data to your server
+      // For demo purposes, we'll just show the success message
+      document.getElementById('appSuccess').style.display = 'block';
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        this.reset();
+        document.getElementById('appSuccess').style.display = 'none';
+        modals.apply.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }, 3000);
+    });
+    
+    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would typically send the form data to your server
+      // For demo purposes, we'll just show the success message
+      document.getElementById('inqSuccess').style.display = 'block';
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        this.reset();
+        document.getElementById('inqSuccess').style.display = 'none';
+        modals.inquire.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }, 3000);
+    });
+    
+    // Scroll animations
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.fade-in, .slide-up');
+      
+      elements.forEach(el => {
+        const elementPosition = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementPosition < windowHeight - 100) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Initial check
+    animateOnScroll();
+    
+    // Check on scroll
+    window.addEventListener('scroll', animateOnScroll);
+  </script>
+</body>
+</html>
